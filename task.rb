@@ -215,7 +215,7 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name,:age
+  attr_reader :name,:age
   def initialize(name:,age:)
     @name=name
     @age=age
@@ -229,11 +229,12 @@ class Zoo
   end
 
   def info_entry_fee(user)
-    if user.age<4
+    case user.age
+    when 0..4
       @fee=@entry_fee[:infant]
-    elsif user.age<16
+    when 5..15
       @fee=@entry_fee[:children]
-    elsif user.age<66
+    when 16..65
       @fee=@entry_fee[:adult]
     else
       @fee=@entry_fee[:senior]
